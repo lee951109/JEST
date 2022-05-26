@@ -54,4 +54,27 @@ describe('Button 컴포넌트 (@testing-library/react)', () => {
     expect(p).not.toBe(null);
     expect(p).toBeInstanceOf(HTMLParagraphElement);
   });
+
+  it('버튼을 클릭하면, 5초 동안 버튼이 비활성화 된다.', () => {
+    jest.useFakeTimers();
+
+    const { getByText } = render(<Button />);
+
+    const buttonElemet = getByText('button');
+
+    fireEvent.click(buttonElemet);
+
+
+    // 비활성화
+    expect(buttonElemet).toBeDisabled();
+
+    // 5초 흐름
+    act(() => {
+      jest.advanceTimersByTime(5000);
+    });
+
+    // 활성화
+    expect(buttonElemet).not.toBeDisabled();
+
+  });
 });

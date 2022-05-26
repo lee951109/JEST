@@ -20,7 +20,7 @@ export default function Button () {
 
   return (
     <div>
-      <button onClick={click}>button</button>
+      <button onClick={click} disabled={msg === BUTTON_TEXT.CLICKED}>button</button>
       <p>{msg}</p>
     </div>
   );
